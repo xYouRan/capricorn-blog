@@ -10,6 +10,5 @@
   "devDependencies": {
     "@vuepress/theme-blog": "^2.3.3",
     "vuepress": "^1.9.7"
-  },
-  "homepage": "https://xyouran.github.io/capricorn-blog/"
+  }
 }
