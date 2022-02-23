@@ -35,8 +35,6 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
-          # 部署到你的目标仓库，这里就是你的仓库名
-          REPO: git@github.com:xYouRan/xyouran.github.io.git
           # 该workflow需要操作repo，因此需要一个密钥，下面会讲到如何获取这个密钥
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           # 发布到的分支
