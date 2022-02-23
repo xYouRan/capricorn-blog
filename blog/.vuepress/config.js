@@ -12,4 +12,4 @@ module.exports = {
 // 我的自己项目：github token
 
 
-// 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
+// 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
