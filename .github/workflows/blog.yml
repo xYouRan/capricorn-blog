@@ -1,33 +1,19 @@
-# This is a basic workflow to help you get started with Actions
-
-name: 打包应用的actions
-
-# Controls when the workflow will run
+name: GitHub Actions Build and Deploy Demo
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: master # master分支代码推送的时候激活当前action
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    branches:
+      - master
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # runs-on 操作系统
+  build-and-deploy:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # 迁出代码
-      - name: 迁出代码
+      - name: Checkout
         uses: actions/checkout@master
-     # 安装Node
-      - name: 安装Node
-        uses: actions/setup-node@v1 
-        with: 
-         node-version: 14.7.6
-      # 安装依赖 
-      - name: 安装依赖 
-        run: npm install 
-      # 打包 
-      - name: 打包 
-        run: npm run build
+
+      - name: Build and Deploy
+        uses: JamesIves/github-pages-deploy-action@master
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: build
+          BUILD_SCRIPT: npm install && npm run build
