@@ -31,11 +31,13 @@ jobs:
       - name: 打包
         run: npm run build
 
-      #部署
-      - name: deploy
-        uses: peaceiris/actions-gh-pages@v3 #和上面一样，这里使用的是他人写好的插件库，作用是发布到其他仓库中或者其他分支上，想要具体了解可以在插件库中搜索
+      # 执行JamesIves/github-pages-deploy-action将项目发布到Github Pages
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
-          deploy_key: ${{ secrets.ACCESS_TOKEN }} # key
-          external_repository: xyouran.github.io #推送到该仓库中，地址格式为github名称/仓库名
-          publish_branch: master #分支名
-          publish_dir: docs/.vuepress/dist #要推送的内容（打包后的博客文件夹）
+          # 该workflow需要操作repo，因此需要一个密钥，下面会讲到如何获取这个密钥
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          # 发布到的分支
+          BRANCH: gh-pages
+          # 要发布的文件夹
+          FOLDER: blog/.vuepress/dist
