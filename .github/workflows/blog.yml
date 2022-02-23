@@ -8,16 +8,24 @@ jobs:
     # runs-on 操作系统
     runs-on: ubuntu-latest
     steps:
+      # Job Start
+      - name: Job Start
+        run: echo Hello, GitHub workflows !
+
+      # 检出你在当前github工作空间的项目
       - name: 迁出代码
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
+
       # 安装Node
       - name: 安装Node
         uses: actions/setup-node@v1
         with:
           node-version: '14.7.6'
+
       # 安装依赖
       - name: 安装依赖
         run: npm install
+
       # 打包
       - name: 打包
         run: npm run build
