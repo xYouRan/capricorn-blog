@@ -1,3 +1,3 @@
 # capricorn-blog
 
-个人博客 1
+个人博客
