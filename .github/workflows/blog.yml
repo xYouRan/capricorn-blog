@@ -23,21 +23,15 @@ jobs:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
 
-      # 安装依赖
-      - name: 安装依赖
-        run: npm install
-
-      # 打包
-      - name: 打包
-        run: npm run build
-
       # 执行JamesIves/github-pages-deploy-action将项目发布到Github Pages
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@3.7.1
-        with:
+        uses: jenkey2011/vuepress-deploy@master
+        env:
           # 该workflow需要操作repo，因此需要一个密钥，下面会讲到如何获取这个密钥
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           # 发布到的分支
-          BRANCH: gh-pages
+          TARGET_BRANCH: gh-pages
+
+          BUILD_SCRIPT: yarn && yarn build
           # 要发布的文件夹
-          FOLDER: blog/.vuepress/dist
+          BUILD_DIR: blog/.vuepress/dist
